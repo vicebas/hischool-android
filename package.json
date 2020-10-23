@@ -1,5 +1,6 @@
 {
   "name": "hs-back-end",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {}
 }
