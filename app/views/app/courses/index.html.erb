@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="col-12 mx-auto">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Cursos</li>
+          </ol>
+        </nav>
+        <%= link_to "NOVO CURSO", new_app_institutions_branch_course_path(@branch), class: 'btn btn-sm btn-primary' %>
+      </div>
+      <div class="card-body">
+        <div class="list-group">
+          <% @courses.each do |course| %>
+            <%= link_to app_institutions_branch_course_path(@branch, course), class: 'list-group-item list-group-item-action' do %>
+              <%= course.name.capitalize %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="mx-auto mt-4" style="width: fit-content;">
+          <%= paginate @courses %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+pt-BR:
+  time:
+    formats:
+      descriptive_datetime: '%d de %B de %Y'
+      datetime_default: '%d/%m/%Y - %H:%M'
+      time_default: '%H:%M'
+      date_default: '%d/%m/%Y'
+  activerecord:
+    errors:
+      models:
+        timesheet:
+          attributes:
+            grade_unit:
+              required: Necessário um horário para criar o registro de presença
+    info:
+      models:
+        branch:
+          create:
+            success: "Unidade criada com sucesso"
+            error: "Erro ao criar unidade"
+          update:
+            success: "Unidade atualizada com sucesso"
+            error: "Erro ao atualizar unidade"
+        course:
+          create:
+            success: "Curso criado com sucesso"
+            error: "Erro ao criar curso"
+          update:
+            success: "Curso atualizado com sucesso"
+            error: "Erro ao atualizar curso"
+        grade:
+          create:
+            success: "Grade criada com sucesso"
+            error: "Erro ao criar grade"
+          update:
+            success: "Grade atualizada com sucesso"
+            error: "Erro ao atualizar grade"
+        student:
+          create:
+            success: "Estudante criado com sucesso"
+            error: "Erro ao criar estudante"
+          update:
+            success: "Estudante atualizado com sucesso"
+            error: "Erro ao atualizar estudante"
+        teacher:
+          create:
+            success: "Professor criado com sucesso"
+            error: "Erro ao criar professor"
+          update:
+            success: "Professor atualizado com sucesso"
+            error: "Erro ao atualizar professor"
+          spreadsheet:
+            upload:
+              success: "Planilha importada com sucesso"
+              error: "Erro ao importar planilha"
+        unit:
+          create:
+            success: "Disciplina criado com sucesso"
+            error: "Erro ao criar disciplina"
+          update:
+            success: "Disciplina atualizado com sucesso"
+            error: "Erro ao atualizar disciplina"
+          destroy:
+            success: "Disciplina excluida com sucesso"
+            error: "Erro ao excluir disciplina"

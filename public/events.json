@@ -1,0 +1,16 @@
+[
+  {
+    "title": "CALC I",
+    "textColor": "#FFF",
+    "start": "2019-04-16 19:00",
+    "end": "2019-04-16 20:40",
+    "allDay": false
+  },
+  {
+   "title": "ILC",
+   "textColor": "#FFF",
+   "start": "2019-04-16 19:00",
+   "end": "2019-04-16 20:40",
+   "allDay": false
+  }
+]

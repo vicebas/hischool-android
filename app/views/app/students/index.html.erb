@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="col-12 mx-auto">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to 'Dashboard', root_path %></li>
+            <li class="breadcrumb-item"><%= @branch.name %></li>
+            <li class="breadcrumb-item active">Alunos</li>
+          </ol>
+        </nav>
+        <%= link_to "NOVO ALUNO", new_app_institutions_branch_student_path(@branch), class: 'btn btn-sm btn-primary' %>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">CPF</th>
+              <th scope="col">Email</th>
+              <th scope="col">Matrícula</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @students.each do |student| %>
+            <tr>
+              <th scope="row"><%= student.id %></th>
+              <td><%= student.name %></td>
+              <td><%= student.user.tax_id %></td>
+              <td><%= student.email %></td>
+              <td><%= student.enrollment_id %></td>
+              <td>
+                <%= link_to "Detalhes", app_institutions_branch_student_path(@branch, student) %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="mx-auto" style="width: fit-content;">
+          <%= paginate @students %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

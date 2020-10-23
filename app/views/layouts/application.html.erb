@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= csrf_meta_tags %>
+    <title>HiSchool</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+  </head>
+  <body id="page-top" class="white-hs-bg">
+    <!-- Toast -->
+    <% if flash.present? && flash[:alert].present? %>
+      <%= render partial: 'shared/admin/toast_warning' %>
+    <% elsif flash.present? && flash[:notice]["success"].present? %>
+      <%= render partial: 'shared/admin/toast_success' %>
+    <% elsif flash.present? && flash[:notice]["error"].present? %>
+      <%= render partial: 'shared/admin/toast_error' %>
+    <% end %>
+    <% if current_admin.present? %>
+      <div id="wrapper">
+        <%= render partial: 'shared/admin/sidebar' %>
+        <div id="content-wrapper" class="d-flex flex-column">
+          <div id="content">
+            <%= render partial: 'shared/admin/navbar' %>
+            <%= yield %>
+          </div>
+            <footer class="sticky-footer bg-white">
+              <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                  <span>Copyright &copy; HiSchool 2019</span>
+                </div>
+              </div>
+            </footer>
+        </div>
+      </div>
+    <% else %>
+      <div id="wrapper white-hs-bg">
+        <div id="content-wrapper" class="d-flex flex-column">
+          <div id="content">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </body>
+</html>

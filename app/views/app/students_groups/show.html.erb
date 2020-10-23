@@ -1,0 +1,102 @@
+<div class="container-fluid">
+  <div class="col-12">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Cursos", app_institutions_branch_courses_path(@branch) %></li>
+            <li class="breadcrumb-item"><%= link_to @course.name, app_institutions_branch_course_path(@branch, @course) %></li>
+            <li class="breadcrumb-item"><%= @unit.name %></li>
+            <li class="breadcrumb-item active">Turmas</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <h3>Turmas</h3>
+          </div>
+          <% if @students.any? %>
+            <div class="col-6">
+              <p class="text-right"><%= link_to "Adicionar alunos", new_students_app_institutions_branch_course_unit_students_group_path(@branch, @course, @unit, @group), class: 'btn btn-outline-primary' %></p>
+            </div>
+          <% end %>
+        </div>
+        <div class="row mb-2">
+          <div class="col-12">
+            <ul class="nav nav-tabs">
+              <% @groups.each do |group| %>
+                <li class="nav-item">
+                  <% if @group == group %>
+                    <%= link_to group.code, app_institutions_branch_course_unit_students_group_path(@branch, @course, @unit, group), class: "nav-link active" %>
+                  <% else %>
+                    <%= link_to group.code, app_institutions_branch_course_unit_students_group_path(@branch, @course, @unit, group), class: "nav-link" %>
+                  <% end %>
+                </li>
+              <% end %>
+              <li class="nav-item">
+                <%= link_to new_app_institutions_branch_course_unit_students_group_path(@branch, @course, @unit), class: 'nav-link', title: 'Criar nova turma', data: { toggle: 'tooltip', placement: 'top'} do %>
+                  <i class="fas fa-plus"></i>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-12">
+            <% if @students.any? %>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Matrícula</th>
+                    <th scope="col">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @students.each do |student| %>
+                  <tr>
+                    <th scope="row"><%= student.id %></th>
+                    <td><%= student.name %></td>
+                    <td><%= student.tax_id %></td>
+                    <td><%= student.email %></td>
+                    <td><%= student.enrollment_id %></td>
+                    <td>
+                      <%= link_to app_institutions_branch_student_path(@branch, student), class: 'mx-1', title: 'Detalhes do aluno', data: { toggle: 'tooltip', placement: 'top'} do %>
+                        <i class="far fa-eye"></i>
+                      <% end %>
+                      <%= link_to app_institutions_branch_student_path(@branch, student), class: 'mx-1', title: 'Trocar aluno de turma', data: { toggle: 'tooltip', placement: 'top'} do %>
+                        <i class="fas fa-exchange-alt"></i>
+                      <% end %>
+                      <%= link_to remove_student_app_institutions_branch_course_unit_students_group_path(@branch, @course, @unit, @group, student_id: student.id), class: 'mx-1', title: 'Remover aluno dessa turma', data: { toggle: 'tooltip', placement: 'top'}, method: 'delete' do %>
+                        <i class="fas fa-trash"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+              <div class="mx-auto" style="width: fit-content;">
+                <%= paginate @students %>
+              </div>
+            <% elsif @empty_grade_units %>
+              <h3 class="text-center">Nenhum aluno foi adicionado a esta turma ainda.</h3>
+              <h5 class="text-center">Você deve cadastrar pelo menos um horário na grade de horários com essa disciplina e com essa turma<br>para poder inserir alunos nesta turma.</h5>
+              <p class="text-center">
+                <%= link_to "Cadastrar disciplina na grade de horários", app_institutions_branch_grades_path(@branch), class: 'btn btn-outline-primary' %>
+              </p>
+            <% else %>
+              <h3 class="text-center">Nenhum aluno foi adicionado a esta turma ainda</h3>
+              <p class="text-center">
+                <%= link_to "Você pode adicioná-los clicando aqui", new_students_app_institutions_branch_course_unit_students_group_path(@branch, @course, @unit, @group), class: 'btn btn-outline-primary' %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

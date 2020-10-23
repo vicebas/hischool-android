@@ -1,0 +1,8 @@
+/*
+ *= require_self
+ *= require_tree .
+ *= require app/sb-admin-2.css
+ *= require app/custom.css
+ *= require fullcalendar
+ *= require jquery-ui/datepicker
+ */

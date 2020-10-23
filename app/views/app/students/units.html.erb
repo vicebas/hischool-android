@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <div class="col-12 mx-auto">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to 'Dashboard', root_path %></li>
+            <li class="breadcrumb-item"><%= link_to @branch.name, app_institutions_branch_students_path(@branch) %></li>
+            <li class="breadcrumb-item active"><%= @student.name %></li>
+          </ol>
+        </nav>
+        <button type="button" name="button" class="lean-button purple-blue-hs-text" onclick="enableElement('#student_name','#student_enrollment_id',
+        '#student_tax_id','#student_cellphone','#student_birthdate_1i','#student_birthdate_2i','#student_birthdate_3i','#student_user_attributes_email','#save_student_button','#cancel_teacher_edition_button');">
+          <i class="far fa-edit" data-toggle="tooltip" data-placement="top" title="Clique aqui para editar"></i>
+        </button>
+      </div>
+      <div class="card-body">
+        <div class="container-fluid">
+
+          <div class="row mb-2">
+            <div class="col-12">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <%= link_to "Dados", app_institutions_branch_student_path(@branch, @student), class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Disciplinas", units_app_institutions_branch_student_path(@branch, @student), class: "nav-link active" %>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- HERE GOES THE STUDENT'S DISCIPLINES  -->
+          <div class="row">
+            <div class="col-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Grade</th>
+                    <th scope="col">Disciplina</th>
+                    <th scope="col">Curso</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @units.each do |discipline| %>
+                    <tr>
+                      <td><%= discipline.grade.title %></td>
+                      <td><%= discipline.unit.name %></td>
+                      <td><%= discipline.unit.course.name %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

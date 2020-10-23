@@ -1,0 +1,6 @@
+pt-BR:
+  views:
+    pagination:
+      first: 'Primeira'
+      last: 'Última'
+      truncate: '...'

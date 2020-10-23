@@ -1,0 +1,74 @@
+<div class="modal fade" id="course-filter" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-title">Filtro por curso</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <select class="form-control form-control-lg" id="course_filter">
+          <option>Selecione o curso</option>
+          <option value="0">Sem filtro</option>
+          <% @courses.each do |course| %>
+            <option value="<%= course.id %>"><%= course.name %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">CANCELAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="teacher-filter" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-title">Filtro por curso</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <select class="form-control form-control-lg" id="teacher_filter">
+          <option>Selecione o professor</option>
+          <option value="0">Sem filtro</option>
+          <% @teachers.each do |teacher| %>
+            <option value="<%= teacher.id %>"><%= teacher.name %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">CANCELAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="unit-filter" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-title">Filtro por curso</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <select class="form-control form-control-lg" id="unit_filter">
+          <option>Selecione a disciplina</option>
+          <option value="0">Sem filtro</option>
+          <% @units.each do |unit| %>
+            <option value="<%= unit.id %>"><%= unit.name %> (<%= unit.course.name %>)</option>
+          <% end %>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">CANCELAR</button>
+      </div>
+    </div>
+  </div>
+</div>

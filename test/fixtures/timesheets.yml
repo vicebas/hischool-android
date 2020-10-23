@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: timesheets
+#
+#  id            :bigint(8)        not null, primary key
+#  grade_unit_id :bigint(8)
+#  student_id    :bigint(8)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  registered_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  grade_unit: one
+  student: one
+
+two:
+  grade_unit: two
+  student: two

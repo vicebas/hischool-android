@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: grade_units
+#
+#  id             :bigint(8)        not null, primary key
+#  grade_id       :bigint(8)
+#  unit_id        :bigint(8)
+#  starts_on      :datetime         not null
+#  ends_on        :datetime         not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  total_lectures :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  grade: one
+  unit: one
+  starts_on: 2019-04-10 22:36:04
+  ends_on: 2019-04-10 22:36:04
+
+two:
+  grade: two
+  unit: two
+  starts_on: 2019-04-10 22:36:04
+  ends_on: 2019-04-10 22:36:04

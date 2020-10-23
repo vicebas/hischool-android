@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="col-12 col-md-6 mx-auto">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to 'Professores', app_institutions_teachers_path %></li>
+            <li class="breadcrumb-item active">Subir planilha de professores</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <%= form_tag(upload_spreadsheet_app_institutions_teachers_path, multipart: true, method: 'post') do |form| %>
+              <%= file_field_tag "file", required: true %><br>
+              <%= submit_tag 'IMPORTAR PLANILHA', class: 'btn btn-sm btn-primary mt-2' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

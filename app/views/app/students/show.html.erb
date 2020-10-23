@@ -1,0 +1,89 @@
+<div class="container-fluid">
+  <div class="col-12 mx-auto">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to 'Dashboard', root_path %></li>
+            <li class="breadcrumb-item"><%= link_to @branch.name, app_institutions_branch_students_path(@branch) %></li>
+            <li class="breadcrumb-item active"><%= @student.name %></li>
+          </ol>
+        </nav>
+        <button type="button" name="button" class="lean-button purple-blue-hs-text" onclick="enableElement('#student_name','#student_enrollment_id',
+        '#student_user_attributes_tax_id','#student_cellphone','#student_birthdate_1i','#student_birthdate_2i','#student_birthdate_3i','#student_user_attributes_email','#save_student_button','#cancel_teacher_edition_button');">
+          <i class="far fa-edit" data-toggle="tooltip" data-placement="top" title="Clique aqui para editar"></i>
+        </button>
+      </div>
+      <div class="card-body">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-12">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <%= link_to "Dados", app_institutions_branch_student_path(@branch, @student), class: "nav-link active" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Disciplinas", units_app_institutions_branch_student_path(@branch, @student), class: "nav-link" %>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <%= simple_form_for @student, url: app_institutions_branch_student_path(@branch), method: :put do |f| %>
+            <div class="row mb-2">
+              <div class="col-12">
+                <h3>Informações de identificação</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <%= f.input :name, label: false, placeholder: "Nome completo", input_html: { class: 'form-control', readonly: true } %>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <%= f.simple_fields_for :user do |p| %>
+                    <%= p.input :tax_id, label: false, placeholder: "CPF", input_html: { class: 'form-control', readonly: true } %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-2 mt-2">
+              <div class="col-12">
+                <h3>Informações pessoais</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <label>Número de telefone</label>
+                <%= f.input :cellphone, label: false, placeholder: "(XX) XXXXX-XXXX", readonly: true, input_html: { class: 'form-control' } %>
+              </div>
+              <div class="col-6">
+                <label>Data de nascimento</label>
+                <%= f.input :birthdate, as: :date, label: false, start_year: Date.today.year, end_year: Date.today.year - 120, readonly: true, input_html: { class: 'form-control' }%>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <%= f.simple_fields_for :user do |p| %>
+                  <%= p.input :email, readonly: true, input_html: { class: 'form-control' } %>
+                <% end %>
+              </div>
+              <div class="col-6">
+                <label>Matrícula</label>
+                <%= f.input :enrollment_id, label: false, readonly: true %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <%= f.input :branch_id, as: :hidden, readonly: true %>
+                <%= f.submit 'SALVAR', id: 'save_student_button', class: 'btn btn-primary float-right mt-2 mb-2 d-none' %>
+                <%= link_to 'CANCELAR', app_institutions_branch_student_path(@branch, @student), id: 'cancel_teacher_edition_button', class: 'd-none btn btn-outline-danger float-right m-2' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

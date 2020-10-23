@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="col-12 mx-auto">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Cursos", app_institutions_branch_courses_path(@branch) %></li>
+            <li class="breadcrumb-item active"><%= @course.name %></li>
+          </ol>
+        </nav>
+        <button type="button" name="button" class="lean-button purple-blue-hs-text" onclick="enableElement('#course_name','#course_code','#save_course_button','#cancel_course_edition_button');">
+          <i class="far fa-edit" data-toggle="tooltip" data-placement="top" title="Clique aqui para editar"></i>
+        </button>
+      </div>
+      <div class="card-body">
+        <%= simple_form_for @course, url: app_institutions_branch_course_path(@branch), method: :put do |f| %>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <h3>Informações de identificação</h3>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Código do curso</label>
+                  <%= f.input :code, label: false, required: true, readonly: true, placeholder: "Código identificador do curso", input_html: { class: 'form-control' } %>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Nome do curso</label>
+                  <%= f.input :name, label: false, required: true, readonly: true, placeholder: "Nome do curso", input_html: { class: 'form-control' } %>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <%= f.input :branch_id, as: :hidden %>
+                <%= f.submit 'SALVAR', id: 'save_course_button', class: 'd-none btn btn-primary float-right mt-2 mb-2' %>
+                <%= link_to "CANCELAR", app_institutions_branch_course_path(@branch, @course), id: 'cancel_course_edition_button', class: 'd-none btn btn-outline-danger float-right m-2' %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-7">
+                <div class="form-group">
+                  <label>Disciplinas</label>
+                  <ul class="list-group">
+                    <% @units.each do |unit| %>
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <%= link_to unit.name, app_institutions_branch_course_unit_path(@branch, @course, unit) %>
+                        <div class="d-block">
+                          <span class="badge badge-primary badge-pill"><%= unit.code %></span>
+                          <%= link_to app_institutions_branch_course_unit_teachers_groups_path(@branch, @course, unit) do %>
+                            <i class="fas fa-chalkboard-teacher"></i>
+                          <% end %>
+                          <%= link_to app_institutions_branch_course_unit_students_groups_path(@branch, @course, unit) do %>
+                            <i class="fas fa-book-open"></i>
+                          <% end %>
+                          <%= link_to app_institutions_branch_course_unit_path(@branch, @course, unit), class: 'text-danger', method: :delete, data: { confirm: "Tem certeza que deseja excluir a disciplina do curso? Essa ação é irreversível." } do %>
+                            <i class="far fa-trash-alt"></i>
+                          <% end %>
+                        </div>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-5">
+                <div class="form-group">
+                  <label>Deseja criar uma nova disciplina para adicioná-la?</label><br>
+                  <%= link_to "CRIAR NOVA DISCIPLINA", new_app_institutions_branch_course_unit_path(@branch, @course), class: 'btn btn-sm btn-primary' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

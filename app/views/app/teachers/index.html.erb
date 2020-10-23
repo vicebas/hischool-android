@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="col-12 mx-auto">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex">
+        <%= link_to "NOVO PROFESSOR", new_app_institutions_teacher_path, class: 'btn btn-sm btn-primary mx-2' %>
+        <%= link_to "SUBIR PLANILHA DE PROFESSORES", new_spreadsheet_app_institutions_teachers_path, class: 'btn btn-sm btn-outline-primary' %>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">CPF</th>
+              <th scope="col">Email</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @teachers.each do |teacher| %>
+            <tr>
+              <th scope="row"><%= teacher.id %></th>
+              <td><%= teacher.name %></td>
+              <td><%= teacher.user.tax_id %></td>
+              <td><%= teacher.email %></td>
+              <td>
+                <%= link_to "Detalhes", app_institutions_teacher_path(teacher) %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="mx-auto" style="width: fit-content;">
+          <%= paginate @teachers %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

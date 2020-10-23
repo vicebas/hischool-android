@@ -1,0 +1,85 @@
+<div class="container-fluid">
+  <div class="col-12">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Cursos", app_institutions_branch_courses_path(@branch) %></li>
+            <li class="breadcrumb-item"><%= link_to @course.name, app_institutions_branch_course_path(@branch, @course) %></li>
+            <li class="breadcrumb-item"><%= @unit.name %></li>
+            <li class="breadcrumb-item active"><%= @group.code %></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <h3>Adicionar professores à turma <%= link_to @group.code, app_institutions_branch_course_unit_teachers_group_path(@branch, @course, @unit, @group) %></h3>
+          </div>
+          <div class="col-12 col-md-6">
+            <button type="button" name="button" class="btn btn-success disabled float-right" id="add_teachers_btn" data-branch="<%= @branch.id %>" data-course="<%= @course.id %>" data-unit="<%= @unit.id %>" data-group="<%= @group.id %>">Adicionar selecionados</button>
+            <%= link_to link_to "Voltar para a turma", app_institutions_branch_course_unit_teachers_group_path(@branch, @course, @unit, @group), class: 'btn btn-outline-primary float-right mr-3' %>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-12">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="text-right">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="master_checkbox">
+                      <label class="custom-control-label" for="master_checkbox"></label>
+                    </div>
+                  </th>
+                  <th class="text-center">#</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">CPF</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @teachers.each do |teacher| %>
+                <tr class="<%= teacher.id %>_row">
+                  <th class="text-right">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="<%= teacher.id %>_checkbox">
+                      <label class="custom-control-label" for="<%= teacher.id %>_checkbox"></label>
+                    </div>
+                  </th>
+                  <th class="text-center"><%= teacher.id %></th>
+                  <td><%= teacher.name %></td>
+                  <td><%= teacher.tax_id %></td>
+                  <td><%= teacher.email %></td>
+                  <td>
+                    <%= link_to app_institutions_teacher_path(teacher), class: 'mx-1', title: 'Detalhes do professor', data: { toggle: 'tooltip', placement: 'top'} do %>
+                      <i class="far fa-eye"></i>
+                    <% end %>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <div class="mx-auto" style="width: fit-content;">
+              <%= paginate @teachers %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="add-teachers-toast" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+  <div class="toast-header toast-success">
+    <i class="fas fa-check mr-2"></i>
+    <strong class="mr-auto">Tudo certo!</strong>
+    <button type="button" class="ml-2 mb-1 close text-white" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    Professores adicionados a turma com sucesso!
+  </div>
+</div>

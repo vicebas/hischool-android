@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="col-12 mx-auto">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to 'Dashboard', root_path %></li>
+            <li class="breadcrumb-item"><%= link_to @branch.name, app_institutions_branch_courses_path(@branch) %></li>
+            <li class="breadcrumb-item active">Novo Curso</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="card-body">
+        <%= simple_form_for @course, url: app_institutions_branch_courses_path, method: :post do |f| %>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <h3>Informações de identificação</h3>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Código do curso</label>
+                  <%= f.input :code, label: false, required: true, placeholder: "Código identificador do curso", input_html: { class: 'form-control' } %>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Nome do curso</label>
+                  <%= f.input :name, label: false, required: true, placeholder: "Nome do curso", input_html: { class: 'form-control' } %>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <%= f.input :branch_id, as: :hidden %>
+                <%= f.submit 'SALVAR', class: 'btn btn-primary float-right mt-2 mb-2' %>
+                <%= link_to "CANCELAR", app_institutions_branch_courses_path(@branch), class: 'btn btn-outline-danger float-right m-2' %>
+              </div>
+            </div>
+            <hr>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

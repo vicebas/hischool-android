@@ -1,0 +1,68 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-primary">Informações da instituição</h6>
+          <button type="button" name="button" class="lean-button purple-blue-hs-text" onclick="enableElement('#institution_name','#edit_institution_button');">
+            <i class="far fa-edit" data-toggle="tooltip" data-placement="top" title="Clique aqui para editar"></i>
+          </button>
+        </div>
+        <div class="card-body">
+          <%= simple_form_for @institution, url: app_institutions_path, method: :put do |f| %>
+            <label for="disabledTextInput">Nome da instituição</label>
+            <%= f.input :name, label: false, required: true, placeholder: @institution.name, input_html: { disabled: true, class: 'form-control' } %>
+            <%= f.submit 'Salvar', class: 'btn btn-primary float-right mt-2 d-none', id: 'edit_institution_button' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-primary">Unidades da instituição</h6>
+          <%= link_to "Criar Unidade", new_app_institutions_branch_path, class: 'btn btn-sm btn-primary' %>
+        </div>
+        <div class="card-body">
+          <div id="accordion">
+            <% @branches.each do |branch| %>
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#<%= branch.code %>" aria-expanded="true" aria-controls="collapseOne">
+                      <%= branch.name %>
+                    </button>
+                    <%= link_to app_institutions_branch_path(branch), class: 'lean-button purple-blue-hs-text float-right mt-2' do %>
+                      <i class="fas fa-cog" data-toggle="tooltip" data-placement="top" data-title="Editar unidade"></i>
+                    <% end %>
+                    <%= link_to app_institutions_branch_courses_path(branch), class: 'lean-button purple-blue-hs-text float-right mr-2 mt-2' do %>
+                      <i class="fas fa-graduation-cap" data-toggle="tooltip" data-placement="top" data-title="Cursos"></i>
+                    <% end %>
+                    <%= link_to app_institutions_branch_students_path(branch), class: 'lean-button purple-blue-hs-text float-right mr-2 mt-2' do %>
+                      <i class="fas fa-users" data-toggle="tooltip" data-placement="top" data-title="Alunos"></i>
+                    <% end %>
+                  </h5>
+                </div>
+                <div id="<%= branch.code %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                  <div class="card-body">
+                    <%= simple_form_for branch, url: app_institutions_branch_path(branch), method: :put do |f| %>
+                      <div class="form-group">
+                        <label for="disabledTextInput">Código da unidade</label>
+                        <%= f.input :code, label: false, required: true, placeholder: branch.code, input_html: { disabled: true, class: 'form-control', id: "branch_code_#{branch.code}" } %>
+                      </div>
+                      <div class="form-group">
+                        <label for="disabledTextInput">Nome da unidade</label>
+                        <%= f.input :name, label: false, required: true, placeholder: branch.name, input_html: { disabled: true, class: 'form-control', id: "branch_name_#{branch.name.downcase.tr(' ','_')}" } %>
+                      </div>
+                      <%= f.submit 'Salvar', class: 'btn btn-primary float-right mt-2 mb-2 d-none', id: "edit_branch_button_#{branch.id}" %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

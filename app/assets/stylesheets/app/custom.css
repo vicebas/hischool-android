@@ -1,0 +1,102 @@
+.custom-control-label::before,
+.custom-control-label::after {
+    top: 0rem !important;
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+}
+
+.fc-day-grid-event {
+  opacity: 0.85;
+}
+
+.fc-day-grid-event:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.disabled {
+  color: #d1d3e24f;
+}
+
+select[readonly], input[readonly] {
+  background: #eee; /*Simular campo inativo - Sugestão @GabrielRodrigues*/
+  pointer-events: none;
+  touch-action: none;
+}
+
+button:focus {
+  outline: none !important;
+}
+
+#flash-toast {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: 1000;
+}
+
+#add-students-toast {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: 1000;
+}
+
+#add-teachers-toast {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: 1000;
+}
+
+.toast-success {
+  color: #ffffff !important;
+  background-color: rgb(49, 128, 97) !important;
+}
+
+.toast-error {
+  color: #ffffff !important;
+  background-color: #e74a3b !important;
+}
+
+.breadcrumb {
+  padding: 0 !important;
+  background: transparent !important;
+  margin-bottom: 0 !important;
+}
+
+/*******************/
+/* PALETA DE CORES */
+/*******************/
+
+/* background color */
+.dark-blue-hs-bg    { background-color: #488cdc }
+.light-blue-hs-bg   { background-color: #4a90e2 }
+.lighter-blue-hs-bg { background-color: #dceafd }
+.purple-blue-hs-bg  { background-color: #8180f6 }
+.white-hs-bg        { background-color: #f7faff }
+.pink-hs-bg         { background-color: #f35387 }
+.red-hs-bg          { background-color: #d0021b }
+
+/* text */
+.dark-blue-hs-text    { color: #488cdc }
+.light-blue-hs-text   { color: #4a90e2 }
+.lighter-blue-hs-text { color: #dceafd }
+.purple-blue-hs-text  { color: #8180f6 }
+.white-hs-text        { color: #f7faff }
+.pink-hs-text         { color: #f35387 }
+.red-hs-text          { color: #d0021b }
+
+/* Buttons */
+.lean-button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  opacity: .2;
+}
+
+.lean-button:focus {
+  opacity: 1;
+  transition: .5s;
+}

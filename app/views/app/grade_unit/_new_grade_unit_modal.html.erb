@@ -1,0 +1,108 @@
+<div class="modal fade" id="new_grade_unit_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Novo horário</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @grade_unit, url: app_institutions_branch_grade_grade_units_path(@branch, @grade), method: :post do |f| %>
+          <div class="container-fluid">
+            <div class="row mb-3">
+              <div class="col-12">
+                <h6>Escolha um curso</h6>
+                <select id="course_select" name="grade_unit[unit_id]" data-branch='<%= @branch.id %>' class="form-control form-control-lg" required="required">
+                  <option value=""></option>
+                  <% @courses.each do |course| %>
+                    <option value="<%= course.id %>"><%= course.name %></option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="row d-none hidden-fields">
+              <div class="col-10">
+                <h6>Disciplina</h6>
+                <%= f.input :unit_id, label: false, collection: [], required: true, input_html: { class: 'form-control' } %>
+              </div>
+              <div class="col-2">
+                <h6>Turma</h6>
+                <%= f.input :group_id, label: false, collection: [], required: true, input_html: { class: 'form-control' } %>
+              </div>
+            </div>
+            <div class="row d-none hidden-fields">
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Início</label>
+                  <%= f.input :starts_on, as: :time, label: false, required: true, placeholder: "Código identificador do curso", input_html: { class: 'form-control' } %>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Fim</label>
+                  <%= f.input :ends_on, as: :time, label: false, required: true, placeholder: "Nome do curso", input_html: { class: 'form-control' } %>
+                </div>
+              </div>
+            </div>
+            <div class="row d-none hidden-fields">
+              <div class="col-12 col-md-6">
+                <h5>Periodicidade</h5>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="grade_radio_one_time" name="frequency" value="one_time" class="custom-control-input" checked=true>
+                  <label class="custom-control-label" for="grade_radio_one_time">Uma vez</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="grade_radio_weekly" name="frequency" value="weekly" class="custom-control-input">
+                  <label class="custom-control-label" for="grade_radio_weekly">Semanal</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="grade_radio_biweekly" name="frequency" value="biweekly" class="custom-control-input">
+                  <label class="custom-control-label" for="grade_radio_biweekly">Quinzenal</label>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <h5>Dias da semana</h5>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" name="grade_unit[days_of_week][sunday]" id="sunday_checkbox">
+                  <label class="custom-control-label" for="sunday_checkbox">Domingo</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" name="grade_unit[days_of_week][monday]" id="monday_checkbox">
+                  <label class="custom-control-label" for="monday_checkbox">Segunda-feira</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" name="grade_unit[days_of_week][tuesday]" id="tuesday_checkbox">
+                  <label class="custom-control-label" for="tuesday_checkbox">Terça-feira</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" name="grade_unit[days_of_week][wednesday]" id="wednesday_checkbox">
+                  <label class="custom-control-label" for="wednesday_checkbox">Quarta-feira</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" name="grade_unit[days_of_week][thursday]" id="thursday_checkbox">
+                  <label class="custom-control-label" for="thursday_checkbox">Quinta-feira</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" name="grade_unit[days_of_week][friday]" id="friday_checkbox">
+                  <label class="custom-control-label" for="friday_checkbox">Sexta-feira</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" name="grade_unit[days_of_week][saturday]" id="saturday_checkbox">
+                  <label class="custom-control-label" for="saturday_checkbox">Sábado</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <%= f.input :grade_id, as: :hidden %>
+                <%= f.submit 'SALVAR', class: 'btn btn-primary float-right mt-2 mb-2' %>
+                <button type="button" class="btn btn-outline-danger float-right m-2" data-dismiss="modal">CANCELAR</button>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

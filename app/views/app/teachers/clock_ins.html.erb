@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div class="col-12 mx-auto">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to 'Professores', app_institutions_teachers_path %></li>
+            <li class="breadcrumb-item active"><%= @teacher.name %></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="card-body">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-12">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <%= link_to "Dados", app_institutions_teacher_path(@teacher), class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Ponto eletrônico", clock_ins_app_institutions_teacher_path(@teacher), class: "nav-link active" %>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Unidade</th>
+                    <th scope="col">Disciplina</th>
+                    <th scope="col">Horário da aula</th>
+                    <th scope="col">Registrado em</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @clock_ins.each do |clock_in| %>
+                    <tr>
+                      <td><%= clock_in.starts_on_date %></td>
+                      <td><%= clock_in.grade.branch.name %></td>
+                      <td><%= clock_in.unit.name %></td>
+                      <td><%= clock_in.starts_on %> até <%= clock_in.ends_on %></td>
+                      <td><%= clock_in.registered_at_time %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

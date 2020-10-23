@@ -1,0 +1,66 @@
+<div class="container-fluid">
+  <div class="col-12">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Cursos", app_institutions_branch_courses_path(@branch) %></li>
+            <li class="breadcrumb-item"><%= link_to @course.name, app_institutions_branch_course_path(@branch, @course) %></li>
+            <li class="breadcrumb-item"><%= @unit.name %></li>
+            <li class="breadcrumb-item active">Turmas</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <h3>Turmas</h3>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-12">
+            <ul class="nav nav-tabs">
+              <% @groups.each do |group| %>
+                <% unless group.new_record? %>
+                  <li class="nav-item">
+                    <%= link_to group.code, app_institutions_branch_course_unit_teachers_group_path(@branch, @course, @unit, group), class: "nav-link" %>
+                  </li>
+                <% end %>
+              <% end %>
+              <li class="nav-item">
+                <%= link_to new_app_institutions_branch_course_unit_teachers_group_path(@branch, @course, @unit), class: 'nav-link active' do %>
+                  <i class="fas fa-plus"></i>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-12 px-5">
+            <%= simple_form_for @group, url: app_institutions_branch_course_unit_teachers_groups_path(@branch, @course, @unit), method: :post do |f| %>
+              <div class="row">
+                <div class="col-12">
+                  <h3>Criar nova turma</h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label>Código da turma</label>
+                    <%= f.input :code, label: false, placeholder: "Nome completo", input_html: { class: 'form-control' } %>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <%= f.input :unit_id, as: :hidden %>
+                  <%= f.submit 'SALVAR', class: 'btn btn-primary float-right mt-2 mb-2' %>
+                  <%= link_to "CANCELAR", app_institutions_branch_course_unit_teachers_groups_path(@branch, @course, @unit), class: 'btn btn-outline-danger float-right m-2' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

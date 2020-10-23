@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="col-12 mx-auto">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to 'Dashboard', root_path %></li>
+            <li class="breadcrumb-item active"><%= @branch.name %></li>
+          </ol>
+        </nav>
+        <%= link_to "NOVA GRADE", new_app_institutions_branch_grade_path(@branch), class: 'btn btn-sm btn-primary' %>
+      </div>
+      <div class="card-body">
+        <div class="list-group">
+          <% @grades.each do |grade| %>
+            <%= link_to app_institutions_branch_grade_path(@branch, grade), class: 'list-group-item list-group-item-action' do %>
+              <%= grade.title.capitalize %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="mx-auto mt-4" style="width: fit-content;">
+          <%= paginate @grades %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
