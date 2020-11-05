@@ -32,7 +32,7 @@ class Branch < ApplicationRecord
   before_save :get_geolocation
 
   def get_geolocation
-    geolocation = Geokit::Geocoders::GoogleGeocoder.geocode("#{street}, #{address_number}, #{city}, #{federation_id}")
+    geolocation = Geokit::Geocoders::OpencageGeocoder.geocode("#{street}, #{address_number}, #{city}, #{federation_id}")
     self.lat = geolocation.lat
     self.lng = geolocation.lng
   end

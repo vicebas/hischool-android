@@ -59,6 +59,9 @@ class App::TeachersController < App::AppController
   end
 
   def teacher_params
-    params.require(:teacher).permit(:name, :tax_id, :cellphone, :institution_id, :"birthdate(3i)", :"birthdate(2i)", :"birthdate(1i)", user_attributes: [:id, :email])
+    teacher_param = params.require(:teacher).permit(:name, :tax_id, :cellphone, :institution_id, :"birthdate(3i)", :"birthdate(2i)", :"birthdate(1i)", user_attributes: [:id, :email])
+    teacher_param[:user_attributes][:tax_id] = teacher_param[:tax_id]
+    teacher_param.delete(:tax_id)
+    teacher_param
   end
 end

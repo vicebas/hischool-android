@@ -22,6 +22,9 @@ class TeacherService < ApplicationService
   end
 
   def send_email
-    TeacherMailer.new_account(@teacher.email, @user_pwd).deliver_now
+    begin
+      TeacherMailer.new_account(@teacher.email, @user_pwd).deliver_now
+    rescue
+    end
   end
 end
