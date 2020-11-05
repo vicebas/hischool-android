@@ -28,7 +28,7 @@ Geokit::Geocoders::request_timeout = 3
 
 # You can also use the free API key instead of signed requests
 # See https://developers.google.com/maps/documentation/geocoding/#api_key
-Geokit::Geocoders::GoogleGeocoder.api_key = "AIzaSyDNtCfTzaCK9xvDlQM_5lrr9mvhyyHI68Y"
+Geokit::Geocoders::GoogleGeocoder.api_key = "AIzaSyAMiMlpTUDj0ephkMdFndp6W2x78netuzs"
 
 # You can also set multiple API KEYS for different domains that may be directed
 # to this same application.
@@ -59,14 +59,14 @@ Geokit::Geocoders::GoogleGeocoder.api_key = "AIzaSyDNtCfTzaCK9xvDlQM_5lrr9mvhyyH
 # This is your username key for geonames.
 # To use this service either free or premium, you must register a key.
 # See http://www.geonames.org
-# Geokit::Geocoders::GeonamesGeocoder.key = 'KEY'
+Geokit::Geocoders::GeonamesGeocoder.key = 'vicebas'
 
 # Most other geocoders need either no setup or a key
 # Geokit::Geocoders::BingGeocoder.key = ''
 # Geokit::Geocoders::MapQuestGeocoder.key = ''
 # Geokit::Geocoders::YandexGeocoder.key = ''
 # Geokit::Geocoders::MapboxGeocoder.key = 'ACCESS_TOKEN'
-# Geokit::Geocoders::OpencageGeocoder.key = 'some_api_key'
+Geokit::Geocoders::OpencageGeocoder.key = '2445a4ea708b402d83005eabc2c1de7e'
 
 # Geonames has a free service and a premium service, each using a different URL
 # GeonamesGeocoder.premium = true will use http://ws.geonames.net (premium)
